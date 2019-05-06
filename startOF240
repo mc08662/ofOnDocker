@@ -1,0 +1,10 @@
+#!/bin/sh
+# Run an instance of OpenFOAM 240 and mount local user dirs to container.
+
+USER_ID="$(id -u)"
+GROUP_ID="$(id -g)"
+userDir=$HOME/OpenFOAM/
+containerName="openFoam24x"-$RANDOM
+
+#docker run -it -d --name ${containerName} --user=${user} -e USER=${username} --workdir="${userDir}" --volume="${userDir}:${userDir}" --volume="/etc/group:/etc/group:ro"  --volume="/etc/passwd:/etc/passwd:ro"  --volume="/etc/shadow:/etc/shadow:ro"  --volume="/etc/sudoers.d:/etc/sudoers.d:ro" of240 /bin/bash --rcfile ofprofile
+docker run --rm -it --name ${containerName} -u $USER_ID -e USER=$USER --workdir="${userDir}" --volume="${userDir}:${userDir}"  of240

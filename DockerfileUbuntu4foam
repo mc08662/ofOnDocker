@@ -1,0 +1,11 @@
+FROM ubuntu:14.04
+
+RUN apt-get update && apt-get install dpkg && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y csh git-core build-essential cmake flex bison gnuplot \
+zlib1g-dev libreadline-dev libboost-thread1.54.0 libcgal10 \
+libgmp10 libhwloc5 libmpfr4 libopenmpi1.6 libptscotch-5.1 libscotch-5.1 \
+libncurses-dev libboost-system-dev libboost-thread-dev libgmp-dev libmpfr-dev \
+binutils-dev libscotch-dev libopenmpi-dev libxt-dev openmpi-bin libcgal-dev \
+python python-dev \
+&& rm -rf /var/lib/apt/lists/*

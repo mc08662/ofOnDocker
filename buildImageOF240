@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# ------------------------------------------------------------------ #
+#
+# Bash script to automatically build Docker Images
+# Different OpenFOAM versions can be chosen and set in Dockerfile
+# OpenFOAM is installed on Ubuntu 14.04 LTS Image
+# OpenFOAM is not compiled on Docker but installed from binaries
+# ubuntu4foam image is created once. After  multiple OpenFOAM 
+# versions can be installed on top.
+#
+# ------------------------------------------------------------------ #
+
+if [ ! "$(docker images | grep ubuntu4foam)" ]; then
+    echo "No Ubuntu Image with OpenFOAM dependencies found"
+    echo "Creating Docker Ubuntu image for OpenFOAM"
+    echo "++++++++++++++++++++++++++++++++++++++++++"
+    docker build -t ubuntu4foam --no-cache=true -f DockerfileUbuntu4foam .
+fi
+
+echo "Creating Docker OpenFOAM image"
+echo "++++++++++++++++++++++++++++++++++++++++++"
+foamUserDir="$HOME/OpenFOAM"
+
+
+docker build --build-arg HUSER="$USER" -t of240 --no-cache=true .
+
+echo "++++++++++++++++++++++++++++++++++++++++++"
+if [ ! -d $foamUserDir ]; then
+    echo "Creating OpenFOAM dir ( $foamUserDir ) under user's home, on host";
+    mkdir -p $foamUserDir;
+fi
