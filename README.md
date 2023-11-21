@@ -35,7 +35,7 @@ To set up OpenFOAM 2.4x with Ubuntu 14.04:
 
 1. Create the Ubuntu Image and install the pre-required packages for OpenFOAM by running `buildImageOF240` bash script. It will create an `OpenFOAM` directory under `$HOME/`
 2. Create the OpenFOAM Image by typing `docker build -t of240 -f DockerfileUbuntu4foam`
-3. Launch the OpenFOAM container by running `startOF240` bash script. Logs user in an OpenFOAM environment. Exits normally typping `exit`
+3. Launch the OpenFOAM container by running `runOF240` bash script. Logs user in an OpenFOAM environment. Exits normally typping `exit`
 
 OpenFOAM version can be changed in `Dockerfile` by editting the following line:
 ```
