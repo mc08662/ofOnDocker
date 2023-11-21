@@ -1,0 +1,4 @@
+#!/bin/bash
+# run existing OpenFoam 2.40 Docker container
+docker start openFoam24x
+docker exec -it openFoam24x bash -rcfile ofprofile
